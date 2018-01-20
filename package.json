@@ -1,0 +1,15 @@
+{
+  "name"         : "node-web-scrape",
+  "version"      : "0.0.1",
+  "description"  : "SpartanHack18.",
+  "main"         : "server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author"       : "Juan Trelles, Trung Vo, Tung Hoang, Andre Paredes",
+  "dependencies" : {
+    "express"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest"
+  }
+}
