@@ -83,6 +83,12 @@ Choropleth.prototype = {
 			   		return color(d.properties.count_bills);
 			   })
 			   .on("mouseover", function(d){
+			   		d3.selection.prototype.moveToFront = function() {  
+				      return this.each(function(){
+				        this.parentNode.appendChild(this);
+				      });
+				    };
+
 			   		d3.select(this).style('fill-opacity', 0.8);
 			   		d3.select(this).classed("path-selected", true);
 
@@ -93,10 +99,27 @@ Choropleth.prototype = {
 	                         "Total Bills in Period:" + d.properties.count_bills + "<br/>")
 	                   .style("left", (d3.event.pageX) + "px")
 	                   .style("top", (d3.event.pageY) + "px");
+
+	                let state = d.properties.name.replace(" ", "");
+	                d3.select(".line-" + state).classed("path-linechart-selected", true);
+	                d3.select(".line-" + state).moveToFront();
 			   })
 			   .on("mouseout", function(d){
+					d3.selection.prototype.moveToBack = function() {  
+					        return this.each(function() { 
+					            var firstChild = this.parentNode.firstChild; 
+					            if (firstChild) { 
+					                this.parentNode.insertBefore(this, firstChild); 
+					            } 
+					        });
+					    };
+
 			   		d3.select(this).style('fill-opacity', 1);
 			   		d3.select(this).classed("path-selected", false);
+
+			   		let state = d.properties.name.replace(" ", "");
+			   		d3.select(".line-" + state).classed("path-linechart-selected", false);
+			   		d3.select(".line-" + state).moveToBack();
 			   });
 
 			var legend = self.svg.append("g")

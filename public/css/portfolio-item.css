@@ -37,3 +37,15 @@ div.tooltip {
   margin-top: 5px;
   margin-left: 5px;
 }
+
+.path-linechart{
+  stroke-width: 1;
+  fill-opacity: 0;
+  stroke: black;
+}
+
+.path-linechart-selected{
+  stroke-width: 2;
+  fill-opacity: 0;
+  stroke: red;
+}

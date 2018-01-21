@@ -21,6 +21,7 @@ Timeline.prototype = {
 				for (let j = 0; j < data[i].properties.count_bills_congress.length; j++){
 
 					let elem = {
+						state: data[i].properties.name,
 						congress_number: j + 105,
 						number_bills: data[i].properties.count_bills_congress[j]
 					}
@@ -51,17 +52,18 @@ Timeline.prototype = {
 
         for (let i = 0; i < self.data.length; i++)
         	for (let j = 0; j < self.data[i].length; j++) {
-        		if (self.data[i][j].congress_number > extent[1])
-        			extent[1] = self.data[i][j].congress_number;
-        		if (self.data[i][j].congress_number < extent[0])
-        			extent[0] = self.data[i][j].congress_number;
+        		if (self.data[i][j].number_bills > extent[1])
+        			extent[1] = self.data[i][j].number_bills;
+        		if (self.data[i][j].number_bills < extent[0])
+        			extent[0] = self.data[i][j].number_bills;
         	}
 
         y.domain(extent);
 
         let line = d3.line()
             .curve(d3.curveBasis)
-            .x(function(d) { return x(d.congress_number); })
+            .x(function(d) { 
+            	return x(d.congress_number); })
             .y(function(d) { return y(d.number_bills); });
 
         g.append("g")
@@ -83,7 +85,7 @@ Timeline.prototype = {
 
         zone.append("path")
             .attr("class", function(d) {
-                return "line path-linechart line"; 
+                return "line path-linechart line-" + d[0].state.replace(" ", ""); 
             })
             .attr("d", function(d) {
                 let values = d;
