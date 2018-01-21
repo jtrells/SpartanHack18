@@ -147,6 +147,7 @@ Choropleth.prototype = {
 		      	  .text(function(d) { return d; });
 
 		    self.initTimeline();
+		    //self.initTreemap();
 
 		  });
 
@@ -223,5 +224,11 @@ Choropleth.prototype = {
 		let self = this;
 		let timeline = new Timeline("#timeline", self.data.features);
 		timeline.init();
+	},
+
+	initTreemap: function() {
+		let self = this;
+		let treemap = new Treemap("#treemap", self.data.features);
+		treemap.init();
 	}
 }
