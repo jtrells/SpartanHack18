@@ -15,6 +15,9 @@
 	    "value_changed_callback": function(cause, leftValue, rightValue) {
 	        $(this).parent().parent().find('.left-label').find('.leftLabel').text(leftValue);
 	        $(this).parent().parent().find('.right-label').find('.rightLabel').text(rightValue);
+	    },
+	    "user_mouseup_callback": function(vmin, vmax, left_grip_moved){
+	    	choropleth.update(vmin, vmax);
 	    }
 	});
 	
